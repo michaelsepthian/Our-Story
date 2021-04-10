@@ -5,25 +5,31 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Patterns
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_create__acc.*
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.email
+import kotlinx.android.synthetic.main.activity_login.password
 
 class LoginActivity : AppCompatActivity() {
-    val mAuth = FirebaseAuth.getInstance()
-    lateinit var mDatabase : DatabaseReference
+
+    private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        mAuth = FirebaseAuth.getInstance()
+
         button_login.setOnClickListener {
             loginUser()
         }
 
-        signup_button.setOnClickListener{
+        signup_button.setOnClickListener {
             val intent = Intent(this, CreateAccActivity::class.java)
             startActivity(intent)
             finish()
@@ -31,77 +37,34 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser() {
-        val sharedPreference : SharedPreference = SharedPreference(this)
+        val emailLog = email.text.toString()
+        val passwordLog = password.text.toString()
 
-        var emailLog = email.text.toString()
-        var passwordLog = password.text.toString()
-
-        if(emailLog.isEmpty()){
-            email.error = "Please input your email"
+        if (!Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()) {
+            email.error = "Please enter valid email"
             email.requestFocus()
             return
         }
 
-        if(passwordLog.isEmpty()){
-            password.error = "Please input password"
+        if (passwordLog.isEmpty()) {
+            password.error = "Please enter password"
             password.requestFocus()
             return
         }
 
         if(!emailLog.isEmpty() && !passwordLog.isEmpty()){
-            this.mAuth.signInWithEmailAndPassword(emailLog, passwordLog).addOnCompleteListener(this, OnCompleteListener { task ->
-
-                if(task.isSuccessful){
-                    sharedPreference.save("email",emailLog)
-                    sharedPreference.save("pwd",passwordLog)
-                    cekActivity()
-                }else{
-                    Toast.makeText(this,"Error Logging in : (", Toast.LENGTH_SHORT).show()
+            mAuth.signInWithEmailAndPassword(emailLog, passwordLog)
+                .addOnCompleteListener { task ->
+                    if(task.isSuccessful){
+                        val intent = Intent(this@LoginActivity, DiscoverActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
+                        finish()
+                    }
+                    else{
+                        Toast.makeText(this@LoginActivity, "Error Message: " + task.exception!!.message.toString(),Toast.LENGTH_LONG).show()
+                    }
                 }
-            })
-        }else{
-            Toast.makeText(this,"Please fill up the Credentials : | ", Toast.LENGTH_SHORT).show()
         }
     }
-
-    private fun cekActivity() {
-        mDatabase = FirebaseDatabase.getInstance().getReference("Users")
-        val user = FirebaseAuth.getInstance().currentUser
-        var cek: String? = null
-
-        val uid = user!!.uid
-
-        mDatabase.child(uid).addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-
-            }
-
-            override fun onDataChange(p: DataSnapshot) {
-                cek = p.child("gender").value.toString()
-
-                if (cek == "null") {
-                    startActivity(Intent(this@LoginActivity, FavoriteActivity::class.java))
-                    finish()
-                }else{
-                    startActivity(Intent(this@LoginActivity, DiscoverActivity::class.java))
-                    finish()
-                }
-            }
-        })
-    }
-
-    private var doubleBackToExit = false
-    override fun onBackPressed() {
-        super.onBackPressed()
-
-        if(doubleBackToExit){
-            super.onBackPressed()
-            System.exit(0)
-        } else {
-            this.doubleBackToExit = true
-            Toast.makeText(this,"Click back again to exit",Toast.LENGTH_SHORT).show()
-            Handler().postDelayed(Runnable{doubleBackToExit = false}, 2000)
-        }
-    }
-
 }
