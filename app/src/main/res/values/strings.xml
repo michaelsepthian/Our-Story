@@ -20,4 +20,7 @@
     <string name="catatan">This book should have a great stroies beside of the genre</string>
     <string name="button_read">Read This Book</string>
     <string name="our_story">OUR STORY</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_favorite">Favorite</string>
 </resources>
