@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
@@ -55,12 +56,15 @@
 
     <Button
         android:id="@+id/button_login"
+        android:background="@drawable/custom_background_button"
         android:layout_width="288dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/password_text_input_layout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="@string/login"/>
+        android:text="@string/login"
+        android:textColor="@color/white"
+        />
 
     <ImageButton
         android:id="@+id/google_button"
@@ -82,9 +86,10 @@
         android:layout_marginStart="120dp"
         android:layout_marginTop="37dp"
         android:layout_toEndOf="@+id/google_button"
-        android:background="@color/purple_700"
+        android:background="@drawable/custom_background_button"
+        style="style"
         android:text="@string/signup"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         />
     
 </RelativeLayout>
