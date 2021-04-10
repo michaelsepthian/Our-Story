@@ -27,6 +27,13 @@ class CreateAccActivity : AppCompatActivity() {
         register_button.setOnClickListener {
             registerUser()
         }
+
+        login_button.setOnClickListener{
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+
+        }
     }
 
     private fun registerUser() {
