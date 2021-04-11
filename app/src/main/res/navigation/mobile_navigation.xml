@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
-
-    <fragment
-        android:id="@+id/nav_home"
-        android:label="@string/menu_home"
-        tools:layout="@layout/activity_discover" />
-
-    <fragment
-        android:id="@+id/nav_myprofile"
-        android:label="@string/menu_profile"
-        <!---->tools:layout="@layout/activity_profile" />
-
-    <fragment
-        android:id="@+id/nav_myfavorites"
-        android:label="@string/menu_favorite"
-        tools:layout="@layout/activity_favorite" />
-</navigation>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+</menu>
