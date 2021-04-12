@@ -17,51 +17,51 @@ import com.google.android.material.snackbar.Snackbar
 import de.hdodenhof.circleimageview.CircleImageView
 
 class DiscoverActivity : AppCompatActivity() {
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    internal lateinit var profileCircleImageView: CircleImageView
-    internal var profileImageUrl =
-        "https://lh3.googleusercontent.com/-4qy2DfcXBoE/AAAAAAAAAAI/AAAAAAAABi4/rY-jrtntAi4/s640-il/photo.jpg"
+//    private lateinit var appBarConfiguration: AppBarConfiguration
+//    internal lateinit var profileCircleImageView: CircleImageView
+//    internal var profileImageUrl =
+//        "https://lh3.googleusercontent.com/-4qy2DfcXBoE/AAAAAAAAAAI/AAAAAAAABi4/rY-jrtntAi4/s640-il/photo.jpg"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discover)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
-        profileCircleImageView =
-            navView.getHeaderView(0).findViewById(R.id.imageView)
-        Glide.with(this)
-            .load(profileImageUrl)
-            .into(profileCircleImageView)
-
-        appBarConfiguration = AppBarConfiguration.Builder(
-            R.id.nav_home, R.id.nav_myprofile, R.id.nav_myfavorites
-        )
-            .setDrawerLayout(drawerLayout)
-            .build()
-
-        val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.nav_home, R.id.nav_myprofile, R.id.nav_myfavorites), drawerLayout)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
-    }
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
+//
+//        val fab: FloatingActionButton = findViewById(R.id.fab)
+//        fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show()
+//        }
+//        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+//        val navView: NavigationView = findViewById(R.id.nav_view)
+//        profileCircleImageView =
+//            navView.getHeaderView(0).findViewById(R.id.imageView)
+//        Glide.with(this)
+//            .load(profileImageUrl)
+//            .into(profileCircleImageView)
+//
+//        appBarConfiguration = AppBarConfiguration.Builder(
+//            R.id.nav_home, R.id.nav_myprofile, R.id.nav_myfavorites
+//        )
+//            .setDrawerLayout(drawerLayout)
+//            .build()
+//
+//        val navController = findNavController(R.id.nav_host_fragment)
+//        // Passing each menu ID as a set of Ids because each
+//        // menu should be considered as top level destinations.
+//        appBarConfiguration = AppBarConfiguration(setOf(
+//            R.id.nav_home, R.id.nav_myprofile, R.id.nav_myfavorites), drawerLayout)
+//        setupActionBarWithNavController(navController, appBarConfiguration)
+//        navView.setupWithNavController(navController)
+//    }
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        menuInflater.inflate(R.menu.main, menu)
+//        return true
+//    }
+//
+//    override fun onSupportNavigateUp(): Boolean {
+//        val navController = findNavController(R.id.nav_host_fragment)
+//        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }
