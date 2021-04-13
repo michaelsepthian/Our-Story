@@ -32,7 +32,8 @@
     <string name="descripton_book">Descripton Book</string>
     <string name="name_book">Name Book</string>
     <string name="save">Save</string>
-    <string name="edit_name">Name</string>
+    <string name="edit_firstname">Firstname</string>
+    <string name="edit_lastname">Lastname</string>
     <string name="change_photo_profile">Change Photo</string>
     <string name="book_title">Book Title</string>
     <string name="description">Description</string>
