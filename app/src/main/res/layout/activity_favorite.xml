@@ -6,77 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <ImageButton
-        android:id="@+id/backlogo"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favorite"
         android:layout_marginTop="10dp"
-        android:background="@drawable/back"
-        android:contentDescription="@string/back" />
-
-    <TextView
-        android:id="@+id/text_create"
-        android:layout_toEndOf="@+id/backlogo"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="@string/favorite"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="12dp"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_list_favorites"/>
 
-    <TextView
-        android:id="@+id/text_title"
-        android:layout_below="@+id/text_create"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="@string/favorite_book"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="40dp"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
-
-    <ImageButton
-        android:id="@+id/google_button"
-        android:layout_below="@+id/text_title"
-        android:layout_height="180dp"
-        android:layout_width="130dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/google"
-        android:contentDescription="@string/image_book" />
-
-    <TextView
-        android:id="@+id/book_title"
-        android:layout_below="@+id/text_title"
-        android:layout_toEndOf="@+id/google_button"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="@string/tittle_book"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
-
-    <TextView
-        android:id="@+id/book_description"
-        android:layout_below="@+id/book_title"
-        android:layout_toEndOf="@+id/google_button"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text="@string/catatan"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/register_button"
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/book_description"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="20dp"
-        android:text="@string/button_read" />
 </RelativeLayout>

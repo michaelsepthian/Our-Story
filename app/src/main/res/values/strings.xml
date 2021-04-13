@@ -38,4 +38,5 @@
     <string name="book_title">Book Title</string>
     <string name="description">Description</string>
     <string name="rating">Rating</string>
+    <string name="remove_favorite">Remove</string>
 </resources>
