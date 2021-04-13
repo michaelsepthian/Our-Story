@@ -26,7 +26,7 @@ class EditProfileActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
                     val user: Users? = snapshot.getValue(Users::class.java)
-                    Picasso.get().load(user.getProfile()).placeholder(R.drawable.profile).into(image_profile)
+                    Picasso.get().load(user!!.getProfile()).placeholder(R.drawable.profile).into(image_profile)
                 }
             }
 
