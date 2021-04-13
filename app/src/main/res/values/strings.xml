@@ -26,4 +26,15 @@
     <string name="profile">Profile</string>
     <string name="action_settings">Settings</string>
     <string name="menu_signout">Sign Out</string>
+    <string name="name_profile">name</string>
+    <string name="edit_profile">EDIT PROFILE</string>
+    <string name="recently_read">Recently Read</string>
+    <string name="descripton_book">Descripton Book</string>
+    <string name="name_book">Name Book</string>
+    <string name="save">Save</string>
+    <string name="edit_name">Name</string>
+    <string name="change_photo_profile">Change Photo</string>
+    <string name="book_title">Book Title</string>
+    <string name="description">Description</string>
+    <string name="rating">Rating</string>
 </resources>
