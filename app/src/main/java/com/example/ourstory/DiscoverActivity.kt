@@ -28,8 +28,8 @@ class DiscoverActivity : AppCompatActivity() {
     private var title = "Discover"
     private val client = OkHttpClient()
 
-    private var progressBar: ProgressBar = findViewById(R.id.progressBar)
-    private var recyclerview_id: RecyclerView = findViewById(R.id.recyclerview_id)
+//    private var progressBar: ProgressBar = findViewById(R.id.progressBar)
+//    private var recyclerview_id: RecyclerView = findViewById(R.id.recyclerview_id)
 
 //    companion object {
 //        private val TAG = DiscoverActivity::class.java.simpleName
