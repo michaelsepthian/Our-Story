@@ -43,8 +43,6 @@ class DiscoverActivity : AppCompatActivity() {
         progressBar.visibility = View.VISIBLE
         recyclerview_id.setHasFixedSize(true)
         getListBook()
-        showRecyclerCardView()
-
     }
 
     private fun setActionBarTitle(title: String?){
@@ -81,6 +79,11 @@ class DiscoverActivity : AppCompatActivity() {
                     discover.rating = json_objectdetail.getString("rating").toInt()
                     listDiscover.add(discover)
                 }
+                runOnUiThread{
+                    recyclerview_id.layoutManager = GridLayoutManager(applicationContext,2)
+                    val cardViewDiscoverAdapter = CardViewDiscoverAdapter(listDiscover)
+                    recyclerview_id.adapter = cardViewDiscoverAdapter
+                }
                 progressBar.visibility = View.GONE
             }
         })
@@ -111,11 +114,5 @@ class DiscoverActivity : AppCompatActivity() {
 //                }
 //            }
 //        })
-    }
-
-    private fun showRecyclerCardView(){
-        recyclerview_id.layoutManager = GridLayoutManager(this,2)
-        val cardViewDiscoverAdapter = CardViewDiscoverAdapter(listDiscover)
-        recyclerview_id.adapter = cardViewDiscoverAdapter
     }
 }
