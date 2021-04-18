@@ -54,6 +54,7 @@ class DiscoverActivity : AppCompatActivity() {
 //        val client = AsyncHttpClient()
         var url = "https://api.wattpad.com:443/v4/stories"
         val request = Request.Builder()
+            .header("Authorization", "COmAsfoTl5bHFOoHoKl8uQCo12cA8sl2ytzk2RPu3uRB")
             .url(url)
             .build()
 
