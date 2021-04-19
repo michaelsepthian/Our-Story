@@ -2,20 +2,11 @@ package com.example.ourstory
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.ourstory.adapter.CardViewDiscoverAdapter
-import com.example.ourstory.model.Discover
-import com.loopj.android.http.AsyncHttpClient
-import com.loopj.android.http.AsyncHttpResponseHandler
-import cz.msebera.android.httpclient.Header
-import cz.msebera.android.httpclient.client.methods.RequestBuilder
+import com.example.ourstory.model.Book
+import com.example.ourstory.model.BookPart
 import kotlinx.android.synthetic.main.activity_discover.*
 import okhttp3.*
 import org.json.JSONArray
@@ -24,16 +15,9 @@ import java.io.IOException
 
 class DiscoverActivity : AppCompatActivity() {
 
-    private val listDiscover = ArrayList<Discover>()
+    private val listBook = ArrayList<Book>()
     private var title = "Discover"
     private val client = OkHttpClient()
-
-//    private var progressBar: ProgressBar = findViewById(R.id.progressBar)
-//    private var recyclerview_id: RecyclerView = findViewById(R.id.recyclerview_id)
-
-//    companion object {
-//        private val TAG = DiscoverActivity::class.java.simpleName
-//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +44,7 @@ class DiscoverActivity : AppCompatActivity() {
 
         client.newCall(request).enqueue(object :  Callback {
             override fun onFailure(call: Call, e: IOException) {
-                progressBar.visibility = View.GONE
+                progressBar.visibility = View.INVISIBLE
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -70,50 +54,40 @@ class DiscoverActivity : AppCompatActivity() {
                 //creating json array
                 var jsonarray_info:JSONArray = json_contact.getJSONArray("stories")
                 var size: Int = jsonarray_info.length()
-                val list = ArrayList<Discover>()
+                val list = ArrayList<Book>()
                 for(i in 0 until size) {
                     var json_objectdetail = jsonarray_info.getJSONObject(i)
-                    var discover: Discover = Discover()
-                    discover.id = json_objectdetail.getString("id").toInt()
-                    discover.title = json_objectdetail.getString("title")
-                    discover.image = json_objectdetail.getString("cover")
-                    discover.rating = json_objectdetail.getString("rating").toInt()
-                    listDiscover.add(discover)
+                    var book: Book = Book()
+                    book.id = json_objectdetail.getString("id")
+                    book.title = json_objectdetail.getString("title")
+                    book.description = json_objectdetail.getString("description")
+                    book.image = json_objectdetail.getString("cover")
+                    book.rating = json_objectdetail.getInt("rating")
+
+                    var jsonarray_part: JSONArray = json_objectdetail.getJSONArray("parts")
+                    var part: BookPart = BookPart()
+                    for (j in 0 until jsonarray_part.length()){
+                        var json_objectpart = jsonarray_part.getJSONObject(i)
+                        part.id = json_objectpart.getInt("id")
+                        part.title = json_objectpart.getString("title")
+                        part.url = json_objectpart.getString("url")
+                        part.rating = json_objectpart.getInt("rating")
+                    }
+                    book.part.add(part)
+                    listBook.add(book)
+//                    discover.id = json_objectdetail.getString("id").toInt()
+//                    discover.title = json_objectdetail.getString("title")
+//                    discover.image = json_objectdetail.getString("cover")
+//                    discover.rating = json_objectdetail.getInt("rating")
+//                    listDiscover.add(discover)
                 }
                 runOnUiThread{
                     recyclerview_id.layoutManager = GridLayoutManager(applicationContext,2)
-                    val cardViewDiscoverAdapter = CardViewDiscoverAdapter(listDiscover)
+                    val cardViewDiscoverAdapter = CardViewDiscoverAdapter(listBook)
                     recyclerview_id.adapter = cardViewDiscoverAdapter
                 }
-                progressBar.visibility = View.GONE
+                progressBar.visibility = View.INVISIBLE
             }
         })
-//        client.get(url, object: AsyncHttpResponseHandler() {
-//            override fun onSuccess(statusCode: Int, headers: Array<Header>, responseBody: ByteArray) {
-//                // Jika koneksi berhasil
-//                progressBar.visibility = View.INVISIBLE
-//                // Parsing JSON
-//                val listBook = ArrayList<Discover>()
-//                val result = String(responseBody)
-//                Log.d(TAG, result)
-//                try {
-//                    val jsonArray = JSONArray(result)
-//
-//                    for (i in 0 until jsonArray.length()) {
-//                        val jsonObject = jsonArray.getJSONObject(i)
-//                        val id = jsonObject.getString("id")
-//                        val title = jsonObject.getString("title")
-//                        val cover = jsonObject.getString("cover")
-//                        listBook.add()
-//                    }
-//
-//                    val adapter = ArrayAdapter(this@ListQuotesActivity,  android.R.layout.simple_list_item_1, listQuote)
-//                    listQuotes.adapter = adapter
-//                } catch (e: Exception) {
-//                    Toast.makeText(this@ListQuotesActivity, e.message, Toast.LENGTH_SHORT).show()
-//                    e.printStackTrace()
-//                }
-//            }
-//        })
     }
 }

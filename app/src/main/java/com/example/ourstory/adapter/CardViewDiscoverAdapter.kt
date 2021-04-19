@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.ourstory.databinding.ItemCardviewBookBinding
-import com.example.ourstory.model.Discover
+import com.example.ourstory.model.Book
 
-class CardViewDiscoverAdapter(private val listDiscover: ArrayList<Discover>) : RecyclerView.Adapter<CardViewDiscoverAdapter.CardViewViewHolder>() {
+class CardViewDiscoverAdapter(private val listBook: ArrayList<Book>) : RecyclerView.Adapter<CardViewDiscoverAdapter.CardViewViewHolder>() {
     override fun onCreateViewHolder(
         viewGroup: ViewGroup,
         i: Int
@@ -22,23 +22,23 @@ class CardViewDiscoverAdapter(private val listDiscover: ArrayList<Discover>) : R
         holder: CardViewDiscoverAdapter.CardViewViewHolder,
         position: Int
     ) {
-        holder.bind(listDiscover[position])
+        holder.bind(listBook[position])
     }
 
-    override fun getItemCount(): Int = listDiscover.size
+    override fun getItemCount(): Int = listBook.size
 
 
     inner class CardViewViewHolder(private val binding:ItemCardviewBookBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind (discover: Discover){
+        fun bind (book: Book){
             with(binding){
                 Glide.with(itemView.context)
-                    .load(discover.image)
+                    .load(book.image)
                     .apply(RequestOptions().override(350, 550))
                     .into(bookImgId)
-                bookTitle.text = discover.title
-                rating.text = discover.rating.toString()
+                bookTitle.text = book.title
+                rating.text = book.rating.toString()
 
-                itemView.setOnClickListener{Toast.makeText(itemView.context, "${discover.title}", Toast.LENGTH_SHORT).show()}
+                itemView.setOnClickListener{Toast.makeText(itemView.context, "${book.title}", Toast.LENGTH_SHORT).show()}
             }
         }
     }
