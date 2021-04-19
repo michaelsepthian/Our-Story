@@ -75,11 +75,6 @@ class DiscoverActivity : AppCompatActivity() {
                     }
                     book.part.add(part)
                     listBook.add(book)
-//                    discover.id = json_objectdetail.getString("id").toInt()
-//                    discover.title = json_objectdetail.getString("title")
-//                    discover.image = json_objectdetail.getString("cover")
-//                    discover.rating = json_objectdetail.getInt("rating")
-//                    listDiscover.add(discover)
                 }
                 runOnUiThread{
                     recyclerview_id.layoutManager = GridLayoutManager(applicationContext,2)

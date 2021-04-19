@@ -39,4 +39,10 @@
     <string name="description">Description</string>
     <string name="rating">Rating</string>
     <string name="remove_favorite">Remove</string>
+    <string name="title">Title</string>
+    <string name="part">Part</string>
+    <string name="numparts">numParts</string>
+    <string name="description">Description</string>
+    <string name="rating">Rating</string>
+    <string name="_10">10</string>
 </resources>
