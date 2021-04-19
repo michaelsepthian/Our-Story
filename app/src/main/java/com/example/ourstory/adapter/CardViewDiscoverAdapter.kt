@@ -43,18 +43,18 @@ class CardViewDiscoverAdapter(private val listBook: ArrayList<Book>) : RecyclerV
                 rating.text = book.rating.toString()
 
                 val itemBook = Book(
-                        book.id.toString(),
-                        book.title.toString()
-//                        book.image,
-//                        book.description,
-//                        book.numPart,
-//                        book.rating,
-//                        book.part
+                        book.id,
+                        book.title,
+                        book.image,
+                        book.description,
+                        book.numPart,
+                        book.rating,
+                        book.part
                 )
 
                 itemView.setOnClickListener{
-                    BookActivity.title_book = book.title.toString()
-                    BookActivity.image = book.image.toString()
+//                    BookActivity.title_book = book.title.toString()
+//                    BookActivity.image = book.image.toString()
                     val activity = itemView.context as Activity
                     val bookActivity = Intent(activity, BookActivity::class.java)
                     bookActivity.putExtra(BookActivity.EXTRA_BOOK,itemBook)
