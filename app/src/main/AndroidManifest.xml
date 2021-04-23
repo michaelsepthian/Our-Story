@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OurStory">
-        <activity android:name=".BookActivity"></activity>
+        <activity android:name=".NavigationActivity"></activity>
+        <activity android:name=".BookActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".ProfileActivity" /> <!-- <activity android:name=".Landing"></activity> -->
         <activity android:name=".DiscoverActivity" />
@@ -20,7 +21,7 @@
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".Landing"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

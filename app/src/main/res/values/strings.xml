@@ -43,4 +43,6 @@
     <string name="part">Part</string>
     <string name="numparts">numParts</string>
     <string name="_10">10</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
