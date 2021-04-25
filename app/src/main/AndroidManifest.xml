@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OurStory">
-        <activity android:name=".NavigationActivity"></activity>
+        <activity android:name=".NavigationActivity" />
         <activity android:name=".BookActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".ProfileActivity" /> <!-- <activity android:name=".Landing"></activity> -->

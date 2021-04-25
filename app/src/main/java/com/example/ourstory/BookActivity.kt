@@ -24,33 +24,33 @@ class BookActivity : AppCompatActivity() {
         setContentView(R.layout.activity_book)
 
 //        val book = intent.extras?.get(EXTRA_BOOK) as Book
-        val book = intent.getParcelableExtra(EXTRA_BOOK) as? Book
+//        val book = intent.getParcelableExtra(EXTRA_BOOK) as? Book
 
-        if (book != null) {
-            setActionBarTitle(book.title)
-            supportActionBar?.setDisplayShowHomeEnabled(true)
-            Picasso.get()
-                .load(book.image)
-                .into(img_book)
-
-            tv_title.text = book.title
-            tv_part.text = book.numPart.toString()
-            tv_description.text = book.description
+//        if (book != null) {
+//            setActionBarTitle(book.title)
+//            supportActionBar?.setDisplayShowHomeEnabled(true)
+//            Picasso.get()
+//                .load(book.image)
+//                .into(img_book)
+//
+//            tv_title.text = book.title
+//            tv_part.text = book.numPart.toString()
+//            tv_description.text = book.description
 //            part.layoutManager = LinearLayoutManager(this)
 //            val listPartAdapter = ListPartAdapter(book.part)
 //            part.adapter = listPartAdapter
-        }
+//        }
 
-//        setActionBarTitle(title_book)
-//        supportActionBar?.setDisplayShowHomeEnabled(true)
-//        Picasso.get().load(image).into(img_book)
-//
-//        tv_title.text = title_book
-//        tv_part.text = numPart.toString()
-//        tv_description.text = description
-//        part.layoutManager = LinearLayoutManager(this)
-//        val listPartAdapter = ListPartAdapter(bookPart)
-//        part.adapter = listPartAdapter
+        setActionBarTitle(title_book)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        Picasso.get().load(image).into(img_book)
+
+        tv_title.text = title_book
+        tv_part.text = numPart.toString()
+        tv_description.text = description
+        part.layoutManager = LinearLayoutManager(this)
+        val listPartAdapter = ListPartAdapter(bookPart)
+        part.adapter = listPartAdapter
     }
 
     private fun setActionBarTitle(title: String?){

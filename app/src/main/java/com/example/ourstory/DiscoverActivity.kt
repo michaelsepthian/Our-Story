@@ -1,7 +1,9 @@
 package com.example.ourstory
 
+import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ourstory.adapter.CardViewDiscoverAdapter
@@ -18,6 +20,10 @@ class DiscoverActivity : AppCompatActivity() {
     private val listBook = ArrayList<Book>()
     private var title = "Discover"
     private val client = OkHttpClient()
+
+    companion object {
+        private val TAG = DiscoverActivity::class.java.simpleName
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,27 +60,27 @@ class DiscoverActivity : AppCompatActivity() {
                 //creating json array
                 var jsonarray_info:JSONArray = json_contact.getJSONArray("stories")
                 var size: Int = jsonarray_info.length()
-                val list = ArrayList<Book>()
                 for(i in 0 until size) {
                     var json_objectdetail = jsonarray_info.getJSONObject(i)
-                    var book: Book = Book()
-                    book.id = json_objectdetail.getString("id")
-                    book.title = json_objectdetail.getString("title")
-                    book.description = json_objectdetail.getString("description")
-                    book.image = json_objectdetail.getString("cover")
-                    book.rating = json_objectdetail.getInt("rating")
-                    book.numPart = json_objectdetail.getInt("numParts")
+                    var book: Book = Book(
+                            id = json_objectdetail.getString("id"),
+                            title = json_objectdetail.getString("title"),
+                            description = json_objectdetail.getString("description"),
+                            image = json_objectdetail.getString("cover"),
+                            rating = json_objectdetail.getInt("rating"),
+                            numPart = json_objectdetail.getInt("numParts"),
+                            part = arrayListOf())
+                    var jsonarray_part: JSONArray = json_objectdetail.getJSONArray("parts")
+                    for (j in 0 until jsonarray_part.length()){
+                        var json_objectpart = jsonarray_part.getJSONObject(j)
+                        var part: BookPart = BookPart()
+                        part.id = json_objectpart.getInt("id")
+                        part.title = json_objectpart.getString("title")
+                        part.url = json_objectpart.getString("url")
+                        part.rating = json_objectpart.getInt("rating")
+                        book.part.add(part)
+                    }
 
-//                    var jsonarray_part: JSONArray = json_objectdetail.getJSONArray("parts")
-//                    var part: BookPart = BookPart()
-//                    for (j in 0 until jsonarray_part.length()){
-//                        var json_objectpart = jsonarray_part.getJSONObject(i)
-//                        part.id = json_objectpart.getInt("id")
-//                        part.title = json_objectpart.getString("title")
-//                        part.url = json_objectpart.getString("url")
-//                        part.rating = json_objectpart.getInt("rating")
-//                    }
-//                    book.part.add(part)
                     listBook.add(book)
                 }
                 runOnUiThread{

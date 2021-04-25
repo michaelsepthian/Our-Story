@@ -11,7 +11,7 @@ class ListPartAdapter(private val listPart: ArrayList<BookPart>) : RecyclerView.
     override fun onCreateViewHolder(
         viewGroup: ViewGroup,
         i : Int
-    ): ListPartAdapter.ListViewViewHolder {
+    ): ListViewViewHolder {
         val binding = ItemListPartBinding.inflate(LayoutInflater.from(viewGroup.context),viewGroup, false)
         return ListViewViewHolder(binding)
     }
