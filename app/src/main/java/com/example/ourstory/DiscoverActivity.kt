@@ -62,10 +62,12 @@ class DiscoverActivity : AppCompatActivity() {
                 var size: Int = jsonarray_info.length()
                 for(i in 0 until size) {
                     var json_objectdetail = jsonarray_info.getJSONObject(i)
+                    var json_object_user = json_objectdetail.getJSONObject("user")
                     var book: Book = Book(
                             id = json_objectdetail.getString("id"),
                             title = json_objectdetail.getString("title"),
                             description = json_objectdetail.getString("description"),
+                            penulis = json_object_user.getString("fullname"),
                             image = json_objectdetail.getString("cover"),
                             rating = json_objectdetail.getInt("rating"),
                             numPart = json_objectdetail.getInt("numParts"),

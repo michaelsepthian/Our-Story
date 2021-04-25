@@ -17,6 +17,7 @@ class BookActivity : AppCompatActivity() {
         var image = ""
         var numPart = 0
         var description = ""
+        var penulis = ""
         var bookPart = ArrayList<BookPart>()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +49,7 @@ class BookActivity : AppCompatActivity() {
         tv_title.text = title_book
         tv_part.text = numPart.toString()
         tv_description.text = description
+        tv_penulis.text = penulis
         part.layoutManager = LinearLayoutManager(this)
         val listPartAdapter = ListPartAdapter(bookPart)
         part.adapter = listPartAdapter

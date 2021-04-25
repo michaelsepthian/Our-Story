@@ -47,6 +47,7 @@ class CardViewDiscoverAdapter(private val listBook: ArrayList<Book>) : RecyclerV
                         book.title,
                         book.image,
                         book.description,
+                        book.penulis,
                         book.numPart,
                         book.rating,
                         book.part
@@ -57,6 +58,7 @@ class CardViewDiscoverAdapter(private val listBook: ArrayList<Book>) : RecyclerV
                     BookActivity.image = book.image.toString()
                     BookActivity.numPart = book.numPart
                     BookActivity.description = book.description.toString()
+                    BookActivity.penulis = book.penulis.toString()
                     BookActivity.bookPart = book.part
                     val activity = itemView.context as Activity
                     val bookActivity = Intent(activity, BookActivity::class.java)

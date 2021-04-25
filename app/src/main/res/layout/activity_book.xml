@@ -39,6 +39,7 @@
             android:layout_below="@+id/img_book"
             android:text="@string/book_title"/>
 
+
         <TextView
             android:id="@+id/text_part"
             android:layout_width="70dp"
@@ -60,10 +61,32 @@
             android:layout_marginTop="10dp"/>
 
         <TextView
+            android:id="@+id/text_penulis"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_below="@+id/text_part"
+            android:layout_above="@+id/tv_description"
+            android:layout_marginStart="70dp"
+            android:text="@string/ditulis"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_penulis"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/penulis"
+            android:layout_below="@+id/tv_part"
+            android:layout_above="@+id/desccription"
+            android:layout_toEndOf="@+id/text_part"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
             android:id="@+id/tv_description"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_part"
+            android:layout_below="@+id/tv_penulis"
             android:layout_marginTop="15dp"
             android:layout_centerHorizontal="true"
             android:text="@string/description"

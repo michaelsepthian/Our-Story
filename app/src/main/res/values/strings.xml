@@ -45,4 +45,6 @@
     <string name="_10">10</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="penulis">Penulis</string>
+    <string name="ditulis">Ditulis</string>
 </resources>

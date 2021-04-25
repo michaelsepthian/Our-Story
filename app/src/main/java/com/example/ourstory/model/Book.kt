@@ -8,11 +8,13 @@ data class Book (
         var title: String? = null,
         var image: String? = null,
         var description: String? = null,
+        var penulis: String? = null,
         var numPart: Int = 0,
         var rating: Int = 0,
         val part: ArrayList<BookPart>,
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
+            parcel.readString(),
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
@@ -27,6 +29,7 @@ data class Book (
         parcel.writeString(title)
         parcel.writeString(image)
         parcel.writeString(description)
+        parcel.writeString(penulis)
         parcel.writeInt(numPart)
         parcel.writeInt(rating)
         parcel.writeArray(arrayOf(part))
