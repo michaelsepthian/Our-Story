@@ -10,7 +10,7 @@ data class Book (
         var description: String? = null,
         var numPart: Int = 0,
         var rating: Int = 0,
-        val part: ArrayList<BookPart> = ArrayList<BookPart>(),
+//        val part: ArrayList<BookPart>,
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
@@ -19,7 +19,8 @@ data class Book (
             parcel.readString(),
             parcel.readInt(),
             parcel.readInt(),
-            TODO("part"))
+//            parcel.readArrayList(null) as ArrayList<BookPart>
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
@@ -28,6 +29,7 @@ data class Book (
         parcel.writeString(description)
         parcel.writeInt(numPart)
         parcel.writeInt(rating)
+//        parcel.writeArray(part)
     }
 
     override fun describeContents(): Int {

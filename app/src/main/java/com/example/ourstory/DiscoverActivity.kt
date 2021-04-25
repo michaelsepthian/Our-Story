@@ -63,17 +63,18 @@ class DiscoverActivity : AppCompatActivity() {
                     book.description = json_objectdetail.getString("description")
                     book.image = json_objectdetail.getString("cover")
                     book.rating = json_objectdetail.getInt("rating")
+                    book.numPart = json_objectdetail.getInt("numParts")
 
-                    var jsonarray_part: JSONArray = json_objectdetail.getJSONArray("parts")
-                    var part: BookPart = BookPart()
-                    for (j in 0 until jsonarray_part.length()){
-                        var json_objectpart = jsonarray_part.getJSONObject(i)
-                        part.id = json_objectpart.getInt("id")
-                        part.title = json_objectpart.getString("title")
-                        part.url = json_objectpart.getString("url")
-                        part.rating = json_objectpart.getInt("rating")
-                    }
-                    book.part.add(part)
+//                    var jsonarray_part: JSONArray = json_objectdetail.getJSONArray("parts")
+//                    var part: BookPart = BookPart()
+//                    for (j in 0 until jsonarray_part.length()){
+//                        var json_objectpart = jsonarray_part.getJSONObject(i)
+//                        part.id = json_objectpart.getInt("id")
+//                        part.title = json_objectpart.getString("title")
+//                        part.url = json_objectpart.getString("url")
+//                        part.rating = json_objectpart.getInt("rating")
+//                    }
+//                    book.part.add(part)
                     listBook.add(book)
                 }
                 runOnUiThread{
