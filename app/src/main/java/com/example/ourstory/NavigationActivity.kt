@@ -4,12 +4,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
+import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_navigation.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
-class NavigationActivity : AppCompatActivity() {
+class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    //new
+    lateinit var toolbar: Toolbar
+    lateinit var drawerLayout: DrawerLayout
+    lateinit var navView: NavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
@@ -23,6 +32,32 @@ class NavigationActivity : AppCompatActivity() {
 //        nav_view.setNavigationItemSelectedListener(this)
 //
 //        displayScreen(-1)
+
+        //new
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.nav_view)
+
+        val toggle = ActionBarDrawerToggle(
+                this, drawerLayout, toolbar, 0, 0
+        )
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+        navView.setNavigationItemSelectedListener(this)
+
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_home -> (Toast.makeText(this, "Menu Clicked", Toast.LENGTH_SHORT).show())
+            R.id.nav_myfavorites -> (Toast.makeText(this, "favorite Clicked", Toast.LENGTH_SHORT).show())
+            R.id.nav_myprofile -> (Toast.makeText(this, "Profile Clicked", Toast.LENGTH_SHORT).show())
+            R.id.nav_signout -> (Toast.makeText(this, "Signout Clicked", Toast.LENGTH_SHORT).show())
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
     }
 
 //    override fun onBackPressed() {
