@@ -8,6 +8,7 @@ import com.example.ourstory.model.Book
 import com.example.ourstory.model.BookPart
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_book.*
+import kotlinx.android.synthetic.main.activity_login.*
 
 class BookActivity : AppCompatActivity() {
 
@@ -41,9 +42,17 @@ class BookActivity : AppCompatActivity() {
 //            val listPartAdapter = ListPartAdapter(book.part)
 //            part.adapter = listPartAdapter
 //        }
+        favorite.setOnClickListener {
+            favorite_btn()
+        }
 
-        setActionBarTitle(title_book)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        val actionBar = supportActionBar
+        actionBar!!.title = title_book
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
+//        setActionBarTitle(title_book)
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         Picasso.get().load(image).into(img_book)
 
         tv_title.text = title_book
@@ -55,11 +64,17 @@ class BookActivity : AppCompatActivity() {
         part.adapter = listPartAdapter
     }
 
+    private fun favorite_btn() {
+        val favoriteIntent = googleSignInClient.signInIntent
+        startActivityForResult(favoriteIntent, LoginActivity.RC_SIGN_IN)
+    }
+
     private fun setActionBarTitle(title: String?){
         supportActionBar?.title = title
     }
 
-    override fun onBackPressed() {
-        finish()
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

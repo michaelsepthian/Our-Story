@@ -77,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
             mAuth.signInWithEmailAndPassword(emailLog, passwordLog)
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
-                        val intent = Intent(this@LoginActivity, DiscoverActivity::class.java)
+                        val intent = Intent(this@LoginActivity, NavigationActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
                         finish()

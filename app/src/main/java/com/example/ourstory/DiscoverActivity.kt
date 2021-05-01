@@ -1,14 +1,26 @@
 package com.example.ourstory
 
+import android.bluetooth.BluetoothAdapter
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bumptech.glide.Glide
 import com.example.ourstory.adapter.CardViewDiscoverAdapter
 import com.example.ourstory.model.Book
 import com.example.ourstory.model.BookPart
+import com.google.android.material.navigation.NavigationView
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_discover.*
 import okhttp3.*
 import org.json.JSONArray
@@ -29,10 +41,17 @@ class DiscoverActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discover)
 
-        setActionBarTitle(title)
-        progressBar.visibility = View.VISIBLE
-        recyclerview_id.setHasFixedSize(true)
-        getListBook()
+        if(savedInstanceState == null){
+            setActionBarTitle(title)
+            progressBar.visibility = View.VISIBLE
+            recyclerview_id.setHasFixedSize(true)
+            getListBook()
+        }else{
+            setActionBarTitle(title)
+            progressBar.visibility = View.VISIBLE
+            recyclerview_id.setHasFixedSize(true)
+            getListBook()
+        }
     }
 
     private fun setActionBarTitle(title: String?){

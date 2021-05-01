@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
-</menu>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:label="@string/menu_home"
+        android:name="com.example.ourstory.TestFragment"
+        tools:layout="@layout/fragment_test"/>
+    <activity
+        android:id="@+id/nav_myprofile"
+        android:label="@string/menu_profile"
+        android:name="com.example.ourstory.DiscoverActivity"
+        tools:layout="@layout/activity_discover"/>
+    <fragment
+        android:id="@+id/nav_myfavorites"
+        android:label="@string/menu_favorite"
+        android:name="com.example.ourstory.TestFragment"
+        tools:layout="@layout/fragment_test"/>
+    <fragment
+        android:id="@+id/nav_signout"
+        android:label="@string/menu_signout"
+        android:name="com.example.ourstory.TestFragment"
+        tools:layout="@layout/fragment_test"/>
+
+
+</navigation>
