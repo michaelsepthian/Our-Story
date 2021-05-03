@@ -9,7 +9,7 @@ internal class DatabaseContract {
             const val _ID = "_id"
             const val COVER = "cover"
             const val TITLE = "title"
-            const val RATING = "rating"
+            const val PENULIS = "penulis"
         }
     }
 }
