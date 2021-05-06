@@ -1,8 +1,9 @@
 package com.example.ourstory
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.ourstory.Model.Users
+import com.example.ourstory.model.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -40,5 +41,11 @@ class ProfileActivity : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         })
+
+        button_edit_profile.setOnClickListener(){
+            val intent = Intent(this, EditProfileActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

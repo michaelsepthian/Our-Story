@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OurStory">
         <activity android:name=".NavigationActivity" android:theme="@style/Theme.OurStory.NoActionBar"/>
-        <activity android:name=".BookActivity" />
+        <activity android:name=".BookActivity" android:noHistory = "true"/>
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".ProfileActivity" /> <!-- <activity android:name=".Landing"></activity> -->
         <activity android:name=".DiscoverActivity"/>

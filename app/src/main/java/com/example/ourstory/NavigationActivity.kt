@@ -2,6 +2,8 @@ package com.example.ourstory
 
 import android.os.Bundle
 import android.view.Menu
+import android.widget.SearchView
+import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -13,6 +15,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -45,6 +49,27 @@ class NavigationActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
+        val SV = findViewById<SearchView>(R.id.nav_search)
+        SV.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                BookFragment.query = query
+                supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, SearchFragment(), SearchFragment::class.java.simpleName)
+                        .addToBackStack(SearchFragment::class.java.simpleName)
+                        .commit()
+                Toast.makeText(this@NavigationActivity, query, Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+
+        })
+        loadFragment(DiscoverFragment())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -56,6 +81,14 @@ class NavigationActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun loadFragment(fragment: Fragment){
+        supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment, fragment::class.java.simpleName)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit()
     }
 }
 

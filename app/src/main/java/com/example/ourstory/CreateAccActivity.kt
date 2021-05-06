@@ -170,11 +170,29 @@ class CreateAccActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d("CreateAccActivity", "signInWithCredential:success")
-                    val intent = Intent(this@CreateAccActivity, DiscoverActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(intent)
-                    finish()
+                    Log.d("LoginActivity", "signInWithCredential:success")
+                    firebaseUserID = mAuth.currentUser!!.uid
+                    refUsers = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
+
+                    val userHashMap = HashMap<String, Any>()
+                    userHashMap["uid"] = firebaseUserID
+                    userHashMap["firstname"] = mAuth.currentUser!!.displayName.toString()
+                    userHashMap["lastname"] = ""
+                    userHashMap["profile"] = mAuth.currentUser!!.photoUrl.toString()
+                    userHashMap["cover"] = "https://firebasestorage.googleapis.com/v0/b/our-story-13e4c.appspot.com/o/cover.jpg?alt=media&token=e72663f1-68bb-4f41-b214-e0eb547d3dc2"
+                    userHashMap["status"] = "offline"
+                    userHashMap["search"] = mAuth.currentUser!!.displayName.toString().toLowerCase()
+
+                    refUsers.updateChildren(userHashMap)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    val intent =
+                                            Intent(this@CreateAccActivity, NavigationActivity::class.java)
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                                    startActivity(intent)
+                                    finish()
+                                }
+                            }
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("CreateAccActivity", "signInWithCredential:failure", task.exception)

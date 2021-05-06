@@ -1,5 +1,7 @@
 package com.example.ourstory
 
+import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,24 +11,20 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ourstory.R
 import com.example.ourstory.adapter.ListPartAdapter
+import com.example.ourstory.db.DatabaseContract
+import com.example.ourstory.db.FavoriteHelper
 import com.example.ourstory.model.Book
 import com.example.ourstory.model.BookPart
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_book.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [BookFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class BookFragment : Fragment() {
 
+    private lateinit var favoriteHelper: FavoriteHelper
+
     companion object{
+        var query = ""
         var title_book = ""
         var image = ""
         var numPart = 0
@@ -53,23 +51,42 @@ class BookFragment : Fragment() {
             share_btn()
         }
 
+        favoriteHelper = FavoriteHelper.getInstance(requireContext())
 //        setActionBarTitle(title_book)
 //        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        Picasso.get().load(BookActivity.image).into(img_book)
+        Picasso.get().load(image).into(img_book)
 
-        tv_title.text = BookActivity.title_book
-        tv_part.text = BookActivity.numPart.toString()
-        tv_description.text = BookActivity.description
-        tv_penulis.text = BookActivity.penulis
+        tv_title.text = title_book
+        tv_part.text = numPart.toString()
+        tv_description.text = description
+        tv_penulis.text = penulis
         part.layoutManager = LinearLayoutManager(context)
-        val listPartAdapter = ListPartAdapter(BookActivity.bookPart)
+        val listPartAdapter = ListPartAdapter(bookPart)
         part.adapter = listPartAdapter
     }
 
     private fun favorite_btn() {
-//        val favoriteIntent = googleSignInClient.signInIntent
-//        startActivityForResult(favoriteIntent, LoginActivity.RC_SIGN_IN)
-        Toast.makeText(context,"favorite!!!", Toast.LENGTH_SHORT).show()
+        val cover = image
+        val title = title_book
+        val penulis = penulis
+
+        val values = ContentValues()
+        values.put(DatabaseContract.favoritecolumns.COVER, cover)
+        values.put(DatabaseContract.favoritecolumns.TITLE, title)
+        values.put(DatabaseContract.favoritecolumns.PENULIS, penulis)
+
+        val result = favoriteHelper.insert(values)
+
+        if(result > 0 ){
+            Toast.makeText(requireContext(),"Berhasil Menambahkan ke favorite!!!",Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(requireContext(),"Gagal Menambahkan ke favorite!!!",Toast.LENGTH_SHORT).show()
+        }
+
+        activity?.let {
+            val intent = Intent(it, BookFragment::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun share_btn() {

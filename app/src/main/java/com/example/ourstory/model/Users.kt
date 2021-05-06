@@ -1,4 +1,7 @@
-package com.example.ourstory.Model
+package com.example.ourstory.model
+
+import android.os.Parcel
+import android.os.Parcelable
 
 class Users {
     private var uid: String = ""
@@ -76,3 +79,60 @@ class Users {
         this.search = search
     }
 }
+
+//class Users(
+//        var uid: String? = null,
+//        var firstname: String? = null,
+//        var lastname: String? = null,
+//        var profile: String? = null,
+//        var cover: String? = null,
+//        var status: String? = null,
+//        var search: String? = null
+//) : Parcelable {
+//    constructor(parcel: Parcel) : this(
+//            parcel.readString(),
+//            parcel.readString(),
+//            parcel.readString(),
+//            parcel.readString(),
+//            parcel.readString(),
+//            parcel.readString(),
+//            parcel.readString()) {
+//    }
+//
+//    override fun writeToParcel(parcel: Parcel, flags: Int) {
+//        parcel.writeString(uid)
+//        parcel.writeString(firstname)
+//        parcel.writeString(lastname)
+//        parcel.writeString(profile)
+//        parcel.writeString(cover)
+//        parcel.writeString(status)
+//        parcel.writeString(search)
+//    }
+//
+//    override fun describeContents(): Int {
+//        return 0
+//    }
+//
+//    companion object CREATOR : Parcelable.Creator<Users> {
+//        override fun createFromParcel(parcel: Parcel): Users {
+//            return Users(parcel)
+//        }
+//
+//        override fun newArray(size: Int): Array<Users?> {
+//            return arrayOfNulls(size)
+//        }
+//    }
+//
+//    @JvmName("getProfile1")
+//    fun getProfile(): String?{
+//        return profile
+//    }
+//
+//    fun getFirstName(): String?{
+//        return firstname
+//    }
+//
+//    fun getLastName(): String?{
+//        return lastname
+//    }
+//}

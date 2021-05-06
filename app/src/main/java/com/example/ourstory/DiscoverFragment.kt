@@ -102,6 +102,7 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover) {
                     recyclerview_id.layoutManager = GridLayoutManager(requireContext(),2)
                     val cardViewDiscoverAdapter = CardViewDiscoverAdapter(listBook, mFragmentTransaction)
                     recyclerview_id.adapter = cardViewDiscoverAdapter
+
                 }
                 progressBar.visibility = View.INVISIBLE
             }

@@ -108,7 +108,6 @@ class BookActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        finish()
-        return true
+        return true;
     }
 }

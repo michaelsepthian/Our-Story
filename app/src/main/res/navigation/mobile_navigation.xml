@@ -21,11 +21,16 @@
         android:label="@string/menu_favorite"
         android:name="com.example.ourstory.FavoriteActivity"
         tools:layout="@layout/fragment_discover"/>
-    <fragment
+    <activity
         android:id="@+id/nav_signout"
         android:label="@string/menu_signout"
-        android:name="com.example.ourstory.DiscoverFragment"
-        tools:layout="@layout/fragment_discover"/>
-
+        android:name="com.example.ourstory.LoginActivity"
+        tools:layout="@layout/activity_login"/>
+    <fragment
+        android:id="@+id/action_search"
+        android:label="Search"
+        android:name="com.example.ourstory.SearchFragment"
+        tools:layout="@layout/fragment_search"
+        />
 
 </navigation>
