@@ -21,14 +21,13 @@ import kotlinx.android.synthetic.main.activity_login.password
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var refUsers : DatabaseReference
-    private var firebaseUserID: String = ""
-
     companion object{
         private const val RC_SIGN_IN = 120
     }
 
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var refUsers : DatabaseReference
+    private var firebaseUserID: String = ""
     private lateinit var googleSignInClient : GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,36 +123,33 @@ class LoginActivity : AppCompatActivity() {
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         mAuth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("LoginActivity", "signInWithCredential:success")
-                    firebaseUserID = mAuth.currentUser!!.uid
-                    refUsers = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        firebaseUserID = mAuth.currentUser!!.uid
+                        refUsers = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUserID)
 
-                    val userHashMap = HashMap<String, Any>()
-                    userHashMap["uid"] = firebaseUserID
-                    userHashMap["firstname"] = mAuth.currentUser!!.displayName.toString()
-                    userHashMap["lastname"] = ""
-                    userHashMap["profile"] = mAuth.currentUser!!.photoUrl.toString()
-                    userHashMap["cover"] = "https://firebasestorage.googleapis.com/v0/b/our-story-13e4c.appspot.com/o/cover.jpg?alt=media&token=e72663f1-68bb-4f41-b214-e0eb547d3dc2"
-                    userHashMap["status"] = "offline"
-                    userHashMap["search"] = mAuth.currentUser!!.displayName.toString().toLowerCase()
+                        val userHashMap = HashMap<String, Any>()
+                        userHashMap["uid"] = firebaseUserID
+                        userHashMap["firstname"] = mAuth.currentUser!!.displayName.toString()
+                        userHashMap["lastname"] = ""
+                        userHashMap["profile"] = mAuth.currentUser!!.photoUrl.toString()
+                        userHashMap["cover"] = "https://firebasestorage.googleapis.com/v0/b/our-story-13e4c.appspot.com/o/cover.jpg?alt=media&token=e72663f1-68bb-4f41-b214-e0eb547d3dc2"
+                        userHashMap["status"] = "offline"
+                        userHashMap["search"] = mAuth.currentUser!!.displayName.toString().toLowerCase()
 
-                    refUsers.updateChildren(userHashMap)
+                        refUsers.updateChildren(userHashMap)
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
-                                    val intent =
-                                            Intent(this@LoginActivity, NavigationActivity::class.java)
+                                    val intent = Intent(this@LoginActivity, NavigationActivity::class.java)
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                                     startActivity(intent)
                                     finish()
                                 }
                             }
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("LoginActivity", "signInWithCredential:failure", task.exception)
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w("LoginActivity", "signInWithCredential:failure", task.exception)
+                    }
                 }
-            }
     }
 }
