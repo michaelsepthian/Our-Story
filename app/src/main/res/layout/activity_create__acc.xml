@@ -6,31 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <ImageButton
-        android:id="@+id/backlogo"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/back"
-        android:contentDescription="@string/back" />
-
-    <TextView
-        android:id="@+id/text_create"
-        android:layout_toEndOf="@+id/backlogo"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="@string/create_account"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="12dp"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/text_create"
         android:layout_marginTop="30dp">
 
         <EditText

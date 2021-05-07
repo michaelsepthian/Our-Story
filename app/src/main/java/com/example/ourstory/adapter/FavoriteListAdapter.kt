@@ -1,19 +1,13 @@
 package com.example.ourstory.adapter
 
 import android.app.Activity
-import android.content.Intent
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.ourstory.BookActivity
-import com.example.ourstory.FavoriteActivity
-import com.example.ourstory.NavigationActivity
 import com.example.ourstory.R
 import com.example.ourstory.db.Favorite
 import com.example.ourstory.db.FavoriteHelper
@@ -67,9 +61,6 @@ class FavoriteListAdapter(private val activity: Activity): RecyclerView.Adapter<
                     favoriteHelper = FavoriteHelper.getInstance(itemView.context)
                     val result = favoriteHelper.deleteById(favorite.id.toString()).toLong()
                     if (result > 0){
-//                        val activity = itemView.context as Activity
-//                        val favoriteActivity = Intent(activity, FavoriteActivity::class.java)
-//                        itemView.context.startActivity(favoriteActivity)
                         Toast.makeText(itemView.context,"Favorite Telah Dihapuss!!!", Toast.LENGTH_SHORT).show()
                     }else{
                         Toast.makeText(itemView.context,"Favorite Gagal Dihapuss!!!", Toast.LENGTH_SHORT).show()

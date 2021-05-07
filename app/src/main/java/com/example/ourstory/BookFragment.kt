@@ -83,10 +83,6 @@ class BookFragment : Fragment() {
             Toast.makeText(requireContext(),"Gagal Menambahkan ke favorite!!!",Toast.LENGTH_SHORT).show()
         }
 
-        activity?.let {
-            val intent = Intent(it, BookFragment::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun share_btn() {
